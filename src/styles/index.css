@@ -168,3 +168,49 @@ body {
   background-color: var(--text-color);
   color: #2e343d;
 }
+
+.words {
+  margin-top: 10em;
+  font-size: 1.5rem;
+  user-select: none;
+  overflow: hidden;
+}
+
+.words__content {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.65em;
+}
+
+.words__word {
+  display: flex;
+}
+
+.words__letter.untyped {
+  color: var(--sub-color);
+}
+
+.words__letter.caret {
+  position: relative;
+}
+
+.words__letter.caret::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 4px;
+  background-color: var(--main-color);
+  transition: opacity 100ms ease-in-out;
+  animation: caret 1250ms infinite;
+}
+
+@keyframes caret {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
