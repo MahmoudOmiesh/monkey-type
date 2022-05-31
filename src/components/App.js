@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Options from './Options';
-import Words from './Words';
+import Words, { generateWords } from './Words';
 
 export default function App() {
   const [wordsDetails, setWordsDetails] = useState([]);
@@ -13,15 +13,7 @@ export default function App() {
 
   useEffect(() => {
     generateWords(options).then(words => {
-      const wordsDetails = [];
-      words.forEach(word => {
-        const wordDetails = [];
-        word.split('').forEach(letter => {
-          wordDetails.push({ letter, status: 'untyped' });
-        });
-        wordsDetails.push(wordDetails);
-      });
-      setWordsDetails(wordsDetails);
+      setWordsDetails(words);
     });
   }, [options]);
 
@@ -31,17 +23,4 @@ export default function App() {
       <Words wordsDetails={wordsDetails} />
     </div>
   );
-}
-
-async function generateWords(options) {
-  let wordEnpoint = 'https://random-word-api.herokuapp.com/word?number=';
-  if (options.activeMode === 'words') {
-    wordEnpoint += `${options.activeModeModifier}`;
-  } else {
-    wordEnpoint += '50';
-  }
-
-  const res = await fetch(wordEnpoint);
-  const words = await res.json();
-  return words;
 }
