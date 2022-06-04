@@ -170,7 +170,7 @@ body {
 }
 
 .words {
-  margin-top: 10em;
+  margin-top: 12em;
   font-size: 1.5rem;
   user-select: none;
   overflow: hidden;
@@ -186,8 +186,21 @@ body {
   display: flex;
 }
 
+.words__word.skipped {
+  text-decoration: underline;
+}
+
 .words__letter.untyped {
   color: var(--sub-color);
+}
+.words__letter.correct {
+  color: var(--text-color);
+}
+.words__letter.false {
+  color: var(--error-color);
+}
+.words__letter.extra {
+  color: var(--error-extra-color);
 }
 
 .words__letter.caret {
@@ -199,11 +212,17 @@ body {
   position: absolute;
   height: 100%;
   top: 0;
-  left: 0;
   width: 4px;
   background-color: var(--main-color);
   transition: opacity 100ms ease-in-out;
   animation: caret 1250ms infinite;
+}
+
+.words__letter.caret.left::before {
+  left: 0;
+}
+.words__letter.caret.right::before {
+  right: 0;
 }
 
 @keyframes caret {
