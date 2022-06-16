@@ -41,6 +41,9 @@ export default function Word({ word, typedWord, isCurrentWord, isSkipped }) {
   );
 }
 
+//add the caret to the left is if we are in the middle or beginning of a word
+//add the caret to the right if we are in the end of the word
+
 function getCaretClass(isCurrentWord, i, length, isEnd) {
   if (isCurrentWord && i === length) return 'caret left';
   if (isCurrentWord && i === length - 1 && isEnd) return 'caret right';

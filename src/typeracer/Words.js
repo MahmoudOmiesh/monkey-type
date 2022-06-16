@@ -1,34 +1,30 @@
-import { useEffect, useState } from 'react';
 import Word from './Word';
+
 const PUNCTUATION_PERCENTAGE = 0.5;
 const NUMBERS_PERCENTAGE = 0.3;
 
 export default function Words({ wordsArr, typedArr, currentWordIdx }) {
-  return (
-    <div className='words'>
-      <div className='words__content'>
-        {wordsArr.map((word, i) => {
-          return (
-            <Word
-              word={word}
-              typedWord={typedArr[i] || ''}
-              isCurrentWord={currentWordIdx === i}
-              isSkipped={i < currentWordIdx && typedArr[i].length < word.length}
-              key={i}
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
+  return wordsArr.map((word, i) => {
+    return (
+      <Word
+        word={word}
+        typedWord={typedArr[i] || ''}
+        isCurrentWord={currentWordIdx === i}
+        isSkipped={i < currentWordIdx && typedArr[i].length < word.length}
+        key={i}
+      />
+    );
+  });
 }
+
+//fetches words from my words api
 
 export async function generateWords(options) {
   let apiLink = 'https://english-words-api.herokuapp.com/words/';
   if (options.activeMode === 'words') {
     apiLink += options.activeModeModifier;
   } else {
-    apiLink += 50;
+    apiLink += 15;
   }
   const res = await fetch(apiLink);
   const words = await res.json();
@@ -37,6 +33,9 @@ export async function generateWords(options) {
 
   return words;
 }
+
+//add punctuation the random words based on the PUNCTUATION_PERCENTAGE variable
+//punctuation can be capitalising the first letter or adding a random punctuation charachter
 
 function addPunctuation(wordsArr) {
   const punctuation = ['-', ',', '.', '?', '!', ':', "'", ';'];
@@ -53,13 +52,17 @@ function addPunctuation(wordsArr) {
   }
 }
 
+//replaces some of the words with a random digit number between 1, 4
+
 function addNumbers(wordsArr) {
   for (let i = 0; i < wordsArr.length; i++) {
-    if (Math.random() > 1 - PUNCTUATION_PERCENTAGE) {
+    if (Math.random() > 1 - NUMBERS_PERCENTAGE) {
       wordsArr[i] = randomNumber(1, 4);
     }
   }
 }
+
+//creates a random digit number between two numbers
 
 function randomNumber(minDigits, maxDigits) {
   const randomNumOfDigits = Math.floor(
