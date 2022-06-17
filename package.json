@@ -2,7 +2,7 @@
   "name": "monkey-type",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://MahmoudOmiesh.github.io/",
+  "homepage": "https://MahmoudOmiesh.github.io/monkey-type",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
