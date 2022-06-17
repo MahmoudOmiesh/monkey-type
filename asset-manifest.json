@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/monkey-type/static/css/main.f79673c2.css",
+    "main.js": "/monkey-type/static/js/main.9b430a0f.js",
+    "index.html": "/monkey-type/index.html",
+    "main.f79673c2.css.map": "/monkey-type/static/css/main.f79673c2.css.map",
+    "main.9b430a0f.js.map": "/monkey-type/static/js/main.9b430a0f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f79673c2.css",
+    "static/js/main.9b430a0f.js"
+  ]
+}
