@@ -24,7 +24,7 @@ export async function generateWords(options) {
   if (options.activeMode === 'words') {
     apiLink += options.activeModeModifier;
   } else {
-    apiLink += 15;
+    apiLink += 50;
   }
   const res = await fetch(apiLink);
   const words = await res.json();
