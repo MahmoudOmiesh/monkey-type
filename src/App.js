@@ -138,6 +138,7 @@ export default function App() {
   //handles the logic of the letters, numbers, backspace, spacebar, and ignores all other charachters
 
   function handleKeyPress({ key }) {
+    console.log('press');
     //gets most recent state from the ref
     const { currentWordIdx, words, typed } = stateRef.current;
     // increments word idx only when you typed at least a letter in the word and you didnt exceed the number of words
@@ -179,7 +180,8 @@ export default function App() {
     }
   }
 
-  function newTest() {
+  function newTest({ currentTarget }) {
+    currentTarget.blur();
     startGame();
     resetGame();
   }
@@ -228,13 +230,17 @@ export default function App() {
   }
 
   function startGame() {
-    handleKeyPressRefrence = handleKeyPress;
-    document.body.addEventListener('keydown', handleKeyPressRefrence);
+    if (!handleKeyPressRefrence) {
+      console.log('start');
+      handleKeyPressRefrence = handleKeyPress;
+      document.body.addEventListener('keydown', handleKeyPressRefrence);
+    }
   }
 
   //resets all state and generated new words
 
   function resetGame() {
+    console.log('reset');
     generateWords(options).then(words => setWords(words));
     setTyped([]);
     setCurrentWordIdx(0);
@@ -251,6 +257,7 @@ export default function App() {
 
   function endGame() {
     document.body.removeEventListener('keydown', handleKeyPressRefrence);
+    handleKeyPressRefrence = null;
     clearTimer();
     setDidGameEnd(true);
     setStats(getStats());

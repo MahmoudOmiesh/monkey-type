@@ -378,3 +378,7 @@ footer {
 footer a {
   color: var(--main-color);
 }
+
+body.game-active footer {
+  display: none;
+}
